@@ -24,7 +24,6 @@ class AuthorizationViewModel @Inject constructor(
 
     private val russianCountryCodeIso = "RU"
 
-
     fun updatePolicyAgreementCheckboxState(isChecked: Boolean) {
         updateUiState { copy(hasUserAcceptedPolicy = isChecked) }
     }

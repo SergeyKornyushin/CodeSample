@@ -33,7 +33,6 @@ object NetworkModule {
     @Provides
     fun provideJson() = Network.appJson
 
-
     @Singleton
     @Provides
     @BaseUrl
