@@ -1,7 +1,7 @@
 package com.yusmp.basecode.presentation.profile
 
-import com.yusmp.basecode.presentation.common.UiEvent
-import com.yusmp.basecode.presentation.common.UiState
+import com.yusmp.basecode.presentation.common.models.UiEvent
+import com.yusmp.basecode.presentation.common.models.UiState
 
 data class ProfileUiState(
     val phoneNumber: String? = null,

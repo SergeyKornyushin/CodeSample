@@ -1,6 +1,9 @@
 package com.yusmp.basecode.presentation.common
 
 import androidx.lifecycle.ViewModel
+import com.yusmp.basecode.presentation.common.models.AppEvent
+import com.yusmp.basecode.presentation.common.models.UiEvent
+import com.yusmp.basecode.presentation.common.models.UiState
 import com.yusmp.domain.common.model.CommonBackendFailure
 import com.yusmp.domain.common.model.NoInternetFailure
 import com.yusmp.domain.common.model.UnknownFailure

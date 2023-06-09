@@ -1,6 +1,6 @@
-package com.yusmp.basecode.presentation.common
+package com.yusmp.basecode.presentation.common.models
 
-import java.util.*
+import java.util.UUID
 
 interface UiState
 

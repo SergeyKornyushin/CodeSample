@@ -10,6 +10,9 @@ import com.badoo.mvicore.ModelWatcher
 import com.yusmp.basecode.R
 import com.yusmp.basecode.presentation.common.extentions.observeFlow
 import com.yusmp.basecode.presentation.common.extentions.showSnackBar
+import com.yusmp.basecode.presentation.common.models.AppEvent
+import com.yusmp.basecode.presentation.common.models.UiEvent
+import com.yusmp.basecode.presentation.common.models.UiState
 import kotlinx.coroutines.flow.mapNotNull
 
 abstract class BaseFragment<VB : ViewBinding, S : UiState, E : UiEvent> : Fragment() {
