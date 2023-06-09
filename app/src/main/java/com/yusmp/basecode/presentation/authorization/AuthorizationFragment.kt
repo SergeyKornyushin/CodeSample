@@ -10,9 +10,11 @@ import com.badoo.mvicore.modelWatcher
 import com.yusmp.basecode.R
 import com.yusmp.basecode.databinding.FragmentAuthorizationBinding
 import com.yusmp.basecode.presentation.common.BaseFragment
+import com.yusmp.basecode.presentation.common.extentions.ClickablePart
 import com.yusmp.basecode.presentation.common.extentions.changeErrorState
 import com.yusmp.basecode.presentation.common.extentions.isLoading
-import com.yusmp.basecode.presentation.common.extentions.setClickableText
+import com.yusmp.basecode.presentation.common.extentions.openLinkInBrowser
+import com.yusmp.basecode.presentation.common.extentions.setClickableParts
 import com.yusmp.basecode.presentation.common.utils.setSafeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -56,14 +58,15 @@ class AuthorizationFragment :
 
     override fun FragmentAuthorizationBinding.setupViews() {
         with(binding) {
-            tvPolicy.setClickableText(
-                clickableText = getString(R.string.authorization_link_policy),
-                url = ""
-            ) {}
-            tvPolicy.setClickableText(
-                clickableText = getString(R.string.authorization_company_rules),
-                url = ""
-            ) {}
+            tvPolicy.setClickableParts(
+                completeTextId = R.string.authorization_policy,
+                clickableParts = listOf(
+                    ClickablePart(
+                        textId = R.string.authorization_company_rules,
+                        clickListener = { openLinkInBrowser(getString(R.string.link_policy)) }
+                    )
+                )
+            )
             etPhoneNumber.doAfterTextChanged { text ->
                 viewModel.updatePhoneNumberValue(text.toString())
             }

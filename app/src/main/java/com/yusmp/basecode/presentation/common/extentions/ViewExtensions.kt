@@ -1,13 +1,20 @@
 package com.yusmp.basecode.presentation.common.extentions
 
 import android.content.Context
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.core.widget.ContentLoadingProgressBar
 import com.google.android.material.textfield.TextInputLayout
+import me.saket.bettermovementmethod.BetterLinkMovementMethod
 
 fun View.showKeyboardCompat() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -43,3 +50,61 @@ inline var ContentLoadingProgressBar.isLoading: Boolean
     set(value) {
         if (value) show() else hide()
     }
+
+
+/**
+ * A class representing a clickable part of text.
+ *
+ * @property text The text to be made clickable.
+ * @property clickListener A lambda function to be called when the clickable text is clicked.
+ */
+data class ClickablePart(
+    @StringRes val textId: Int,
+    val clickListener: () -> Unit
+)
+
+/**
+ * Extension function to set parts of text as clickable.
+ *
+ * @param clickableParts A list of `ClickablePart` objects containing the text and the click listener.
+ * @param highlightColor The color to be used for highlighting the clickable parts (optional).
+ */
+fun TextView.setClickableParts(
+    @StringRes completeTextId: Int,
+    clickableParts: List<ClickablePart>,
+    @ColorInt highlightColor: Int? = null
+) {
+    setText(completeTextId)
+    val spannableString = SpannableString(text)
+
+    clickableParts.forEach { part ->
+        val startIndex = text.indexOf(context.getString(part.textId))
+        val endIndex = startIndex + context.getString(part.textId).length
+
+        if (startIndex >= 0 && endIndex <= text.length) {
+            val clickableSpan = object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    part.clickListener.invoke()
+                }
+            }
+
+            spannableString.setSpan(
+                /* what = */ clickableSpan,
+                /* start = */ startIndex,
+                /* end = */ endIndex,
+                /* flags = */ Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            highlightColor?.let {
+                spannableString.setSpan(
+                    /* what = */ ForegroundColorSpan(it),
+                    /* start = */ startIndex,
+                    /* end = */ endIndex,
+                    /* flags = */ Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+    }
+
+    setText(spannableString, TextView.BufferType.SPANNABLE)
+    movementMethod = BetterLinkMovementMethod.getInstance()
+}
