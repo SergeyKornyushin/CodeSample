@@ -27,11 +27,15 @@ abstract class BaseViewModel<S : UiState, E : UiEvent>(initialState: S) : ViewMo
     }
 
     fun removeEvent(eventId: String) {
-        _uiEvents.update { it.filterNot { it.id == eventId } }
+        _uiEvents.update { uiEvents -> uiEvents.filterNot { it.id == eventId } }
     }
 
     fun sendUiEvent(event: E) {
         _uiEvents.update { it + event }
+    }
+
+    fun removeAppWideEvent(eventId: String) {
+        _appWideEvents.update { uiEvents -> uiEvents.filterNot { it.id == eventId } }
     }
 
     fun handleError(throwable: Throwable) {

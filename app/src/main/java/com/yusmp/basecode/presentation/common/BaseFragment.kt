@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.viewbinding.ViewBinding
 import com.badoo.mvicore.ModelWatcher
 import com.yusmp.basecode.R
@@ -55,7 +53,7 @@ abstract class BaseFragment<VB : ViewBinding, S : UiState, E : UiEvent> : Fragme
     private fun observeAppEvents() {
         observeFlow(viewModel.appWideEvents.mapNotNull { it.firstOrNull() }) { event ->
             event.handleAppWideEvent()
-            viewModel.removeEvent(event.id)
+            viewModel.removeAppWideEvent(event.id)
         }
     }
 
