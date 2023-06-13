@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.safe.args)
 }
+apply(from = "../build-tasks.gradle.kts")
 
 android {
     namespace = libs.versions.applicationId.get()
@@ -89,8 +90,10 @@ dependencies {
 val sendApkToTelegram = extra["sendApkToTelegram"] as (File, String) -> Unit
 
 tasks.register("buildDebugAndSendApkToTelegram") {
-    dependsOn("incrementBuildNumber")
-    finalizedBy("assembleDebug") // TODO: you might need to change this to match your build variant
+    dependsOn(
+        "incrementBuildNumber",
+        "assembleDebug"
+    ) // TODO: you might need to change "assembleDebug" to match your build variant
 
     val message = (project.findProperty("m") as? String?) ?: ""
 
