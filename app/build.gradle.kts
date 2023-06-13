@@ -84,3 +84,24 @@ dependencies {
     // model watcher
     implementation(libs.mvi.core.diff)
 }
+
+@Suppress("UNCHECKED_CAST")
+val sendApkToTelegram = extra["sendApkToTelegram"] as (File, String) -> Unit
+
+tasks.register("buildDebugAndSendApkToTelegram") {
+    dependsOn("incrementBuildNumber")
+    finalizedBy("assembleDebug") // TODO: you might need to change this to match your build variant
+
+    val message = (project.findProperty("m") as? String?) ?: ""
+
+    doLast {
+        // TODO: you might need to change this to match your build variant
+        val variant = android.applicationVariants.firstOrNull { it.name == "debug" }
+        val apk = variant?.outputs?.firstOrNull()?.outputFile
+        if (apk?.exists() == true) {
+            sendApkToTelegram(apk, message)
+        } else {
+            throw GradleException("APK not found")
+        }
+    }
+}
