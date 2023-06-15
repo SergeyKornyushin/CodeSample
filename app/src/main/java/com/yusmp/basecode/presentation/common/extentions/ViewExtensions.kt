@@ -51,7 +51,6 @@ inline var ContentLoadingProgressBar.isLoading: Boolean
         if (value) show() else hide()
     }
 
-
 /**
  * A class representing a clickable part of text.
  *
