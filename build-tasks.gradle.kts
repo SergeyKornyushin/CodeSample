@@ -29,34 +29,23 @@ tasks.register("checkForUnpushedChanges") {
         }
     }
 }
-
 tasks.register("incrementBuildNumber") {
     dependsOn("checkForUncommittedChanges", "checkForUnpushedChanges")
 
     doLast {
         // Read the current buildNumber from libs.versions.toml
         val versionsFile = project.file("../gradle/libs.versions.toml")
-        val command = "grep buildNumber ${versionsFile.absolutePath} | cut -d '=' -f 2 | tr -d ' ' | tr -d '\"'"
-        val output = ByteArrayOutputStream()
-        project.exec {
-            commandLine("sh", "-c", command)
-            standardOutput = output
-        }
-        val buildNumber = output.toString().trim().toInt()
+        val versionsText = versionsFile.readText()
+        val buildNumberRegex = """buildNumber\s*=\s*"(\d+)"""".toRegex()
+        val matchResult = buildNumberRegex.find(versionsText)
+        val buildNumber = matchResult?.groupValues?.get(1)?.toInt() ?: 0
 
         // Increment the buildNumber by one
         val newBuildNumber = buildNumber + 1
 
         // Replace the buildNumber in libs.versions.toml with the new value
-        project.exec {
-            commandLine(
-                "sed",
-                "-i",
-                "",
-                "s/buildNumber = .*/buildNumber = \\\"$newBuildNumber\\\"/",
-                versionsFile.absolutePath
-            )
-        }
+        val newVersionsText = versionsText.replace(buildNumberRegex, "buildNumber = \"$newBuildNumber\"")
+        versionsFile.writeText(newVersionsText)
 
         // Commit and push the changes
         project.exec {
