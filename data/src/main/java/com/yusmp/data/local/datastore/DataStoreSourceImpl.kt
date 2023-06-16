@@ -33,7 +33,7 @@ class DataStoreSourceImpl(context: Context) : DataStoreSource {
     }
 
     companion object {
-        const val STORAGE_NAME: String = "MAKE_WAKE"
+        const val STORAGE_NAME: String = "BASE_CODE"
         private val SERVER_URL = stringPreferencesKey("SERVER_URL")
     }
 }
