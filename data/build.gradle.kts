@@ -22,13 +22,17 @@ android {
         getByName("androidTest").assets.srcDirs(files("$projectDir/schemas"))
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
     implementation(project(path = ":domain"))
+
+    // test libs
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.junit)
 
     // serialization
     implementation(libs.kotlin.serilization.json)

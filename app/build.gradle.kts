@@ -33,8 +33,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
@@ -51,6 +51,10 @@ kapt {
 dependencies {
     implementation(project(path = ":domain"))
     implementation(project(path = ":data"))
+
+    // test libs
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.junit)
 
     // android libs
     implementation(libs.androidx.core.ktx)
