@@ -8,7 +8,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
@@ -62,16 +62,17 @@ data class ClickablePart(
     val clickListener: () -> Unit
 )
 
+
 /**
  * Extension function to set parts of text as clickable.
- *
+ * @param completeTextId The complete text to be set on the `TextView`.
  * @param clickableParts A list of `ClickablePart` objects containing the text and the click listener.
  * @param highlightColor The color to be used for highlighting the clickable parts (optional).
  */
 fun TextView.setClickableParts(
     @StringRes completeTextId: Int,
     clickableParts: List<ClickablePart>,
-    @ColorInt highlightColor: Int? = null
+    @ColorRes highlightColor: Int? = null
 ) {
     setText(completeTextId)
     val spannableString = SpannableString(text)
@@ -93,13 +94,16 @@ fun TextView.setClickableParts(
                 /* end = */ endIndex,
                 /* flags = */ Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
-            highlightColor?.let {
-                spannableString.setSpan(
-                    /* what = */ ForegroundColorSpan(it),
-                    /* start = */ startIndex,
-                    /* end = */ endIndex,
-                    /* flags = */ Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
+
+            highlightColor?.also { colorId ->
+                context.getColor(colorId).also {
+                    spannableString.setSpan(
+                        /* what = */ ForegroundColorSpan(it),
+                        /* start = */ startIndex,
+                        /* end = */ endIndex,
+                        /* flags = */ Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
             }
         }
     }

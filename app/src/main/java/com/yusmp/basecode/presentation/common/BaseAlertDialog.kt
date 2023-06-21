@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
-import com.yusmp.basecode.R
 import com.yusmp.basecode.presentation.common.extentions.parcelable
 
 const val DIALOG_FRAGMENT_PARAM_KEY = "paramKey"
@@ -36,11 +35,6 @@ abstract class BaseAlertDialog<VB : ViewBinding> : DialogFragment() {
         arguments?.parcelable<T>(DIALOG_FRAGMENT_PARAM_KEY)
 
     fun show(fragmentManager: FragmentManager) = show(fragmentManager, TAG)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.ThemeOverlay_App_MaterialAlertDialog)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
