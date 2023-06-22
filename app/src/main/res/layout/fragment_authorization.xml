@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/btn_navigate_back"
-        style="@style/BackNavigateImage"
+        style="@style/BackNavigateArrow"
         android:contentDescription="@null"
         app:layout_constraintBottom_toTopOf="@id/tv_headline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/authorization_hint_phone_number"
         android:textColorHint="@color/black_solid_50"
-        app:boxStrokeColor="@color/primary_wave_100"
+        app:boxStrokeColor="@color/violet_100"
         app:boxStrokeErrorColor="@color/error_100"
         app:errorTextColor="@color/error_100"
         app:helperTextTextColor="@color/error_100"
@@ -89,10 +89,8 @@
 
     <CheckBox
         android:id="@+id/chk_policy"
-        style="@style/CheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-12dp"
+        style="@style/SquareCheckBox"
+        android:checked="true"
         app:layout_constraintBottom_toBottomOf="@+id/tv_policy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_policy" />
@@ -100,6 +98,7 @@
     <TextView
         android:id="@+id/tv_policy"
         android:layout_width="0dp"
+        app:layout_constrainedWidth="true"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -124,7 +123,7 @@
 
     <Button
         android:id="@+id/btn_login"
-        style="@style/Button.Big.Field"
+        style="@style/Button.Big.Filled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
