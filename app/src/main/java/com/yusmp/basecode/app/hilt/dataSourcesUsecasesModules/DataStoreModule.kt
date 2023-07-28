@@ -32,5 +32,8 @@ interface DataStoreModule {
 
     @Binds
     fun bindUpdateAppEnvironmentUseCase(impl: UpdateAppEnvironmentUseCaseImpl): UpdateAppEnvironmentUseCase
+
+    @Binds
+    fun bindGetIsFirstLaunchAndSetFalseUseCase(impl: GetIsFirstLaunchAndSetFalseUseCaseImpl): GetIsFirstLaunchAndSetFalseUseCase
     // endregion
 }

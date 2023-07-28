@@ -1,12 +1,14 @@
 package com.yusmp.basecode.presentation.common.extentions
 
 import android.content.Context
+import android.text.InputFilter
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -110,4 +112,8 @@ fun TextView.setClickableParts(
 
     setText(spannableString, TextView.BufferType.SPANNABLE)
     movementMethod = BetterLinkMovementMethod.getInstance()
+}
+
+fun EditText.setMaxLength(maxLength: Int) {
+    filters += arrayOf(InputFilter.LengthFilter(maxLength))
 }

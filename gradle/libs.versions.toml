@@ -50,6 +50,10 @@ better-link-movement-method = "2.2.0"
 phone-number = "8.13.7"
 # mvi-core-diff
 mvi-core-diff = "1.4.0"
+# chucker
+chucker = "3.5.2"
+# seismic
+seismic = "1.0.3"
 
 [plugins]
 # android
@@ -58,6 +62,7 @@ android-library = { id = "com.android.library", version.ref = "gradle-plugin" }
 # kotlin
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 # ksp
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 # hilt
@@ -103,3 +108,8 @@ better-link-movement-method = { group = "me.saket", name = "better-link-movement
 phone-number = { group = "io.michaelrocks", name = "libphonenumber-android", version.ref = "phone-number" }
 # mvi-core-diff
 mvi-core-diff = { group = "com.github.badoo.mvicore", name = "mvicore-diff", version.ref = "mvi-core-diff" }
+# chucker
+chucker-debug = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
+chucker-release = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
+# seismic
+seismic = { group = "com.squareup", name = "seismic", version.ref = "seismic" }

@@ -8,6 +8,10 @@ annotation class LoggingInterceptor
 
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
+annotation class ChuckerInterceptor
+
+@Retention(AnnotationRetention.RUNTIME)
+@Qualifier
 annotation class HeadersInterceptor
 
 @Retention(AnnotationRetention.RUNTIME)

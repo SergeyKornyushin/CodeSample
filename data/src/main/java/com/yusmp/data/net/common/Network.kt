@@ -1,5 +1,9 @@
 package com.yusmp.data.net.common
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.yusmp.data.net.common.interceptors.HeadersInterceptor
 import com.yusmp.data.net.common.interceptors.StatusCodeInterceptor
@@ -47,6 +51,22 @@ public object Network {
         isDebugEnvironment: Boolean
     ): Interceptor? = if (isDebugEnvironment) {
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    } else null
+
+    public fun getChuckerInterceptor(
+        isDebugEnvironment: Boolean,
+        context: Context
+    ): Interceptor? = if (isDebugEnvironment) {
+        val chuckerCollector = ChuckerCollector(
+            context = context,
+            showNotification = true,
+            retentionPeriod = RetentionManager.Period.ONE_HOUR,
+        )
+
+        ChuckerInterceptor.Builder(context)
+            .collector(chuckerCollector)
+            .maxContentLength(Long.MAX_VALUE)
+            .build()
     } else null
 
     public fun getHeadersInterceptor(

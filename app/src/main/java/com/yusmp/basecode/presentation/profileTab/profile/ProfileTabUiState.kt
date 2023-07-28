@@ -1,4 +1,4 @@
-package com.yusmp.basecode.presentation.profile
+package com.yusmp.basecode.presentation.profileTab.profile
 
 import com.yusmp.basecode.presentation.common.models.UiEvent
 import com.yusmp.basecode.presentation.common.models.UiState

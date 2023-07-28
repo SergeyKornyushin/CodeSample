@@ -1,6 +1,7 @@
 package com.yusmp.data.local.datastore
 
 import android.content.Context
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -13,6 +14,17 @@ private val Context.dataStore by preferencesDataStore(DataStoreSourceImpl.STORAG
 
 class DataStoreSourceImpl(context: Context) : DataStoreSource {
     private val dataStore = context.dataStore
+
+    override val isFirstLaunch: Flow<Boolean> = dataStore.data
+        .map { preferences ->
+            preferences[IS_FIRST_LAUNCH] ?: true
+        }
+
+    override suspend fun updateIsFirstLaunch(isFirstLaunch: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[IS_FIRST_LAUNCH] = isFirstLaunch
+        }
+    }
 
     override val appEnvironment: Flow<AppEnvironment> = dataStore.data
         .map { preferences ->
@@ -35,5 +47,6 @@ class DataStoreSourceImpl(context: Context) : DataStoreSource {
     companion object {
         const val STORAGE_NAME: String = "BASE_CODE"
         private val SERVER_URL = stringPreferencesKey("SERVER_URL")
+        private val IS_FIRST_LAUNCH = booleanPreferencesKey("IS_FIRST_LAUNCH")
     }
 }

@@ -1,15 +1,17 @@
 package com.yusmp.basecode.app.hilt.network
 
+import android.content.Context
+import com.yusmp.basecode.BuildConfig
 import com.yusmp.data.net.common.Network
 import com.yusmp.domain.auth.ClearSessionUseCase
 import com.yusmp.domain.auth.GetCurrentSessionUseCase
 import com.yusmp.domain.auth.LogoutUseCase
 import com.yusmp.domain.auth.UpdateTokensUseCase
 import com.yusmp.domain.dataStore.BlockingGetBaseUrlUseCase
-import com.yusmp.basecode.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.serialization.json.Json
@@ -52,6 +54,14 @@ object NetworkModule {
     fun provideLoggingInterceptor(
         isDebugEnvironment: Boolean
     ): Interceptor? = Network.getLoggingInterceptor(isDebugEnvironment)
+
+    @Provides
+    @Singleton
+    @ChuckerInterceptor
+    fun provideChuckerInterceptor(
+        isDebugEnvironment: Boolean,
+        @ApplicationContext context: Context
+    ): Interceptor? = Network.getChuckerInterceptor(isDebugEnvironment, context)
 
     @Provides
     @Singleton
@@ -102,11 +112,12 @@ object NetworkModule {
     fun provideOkHttpClient(
         cache: Cache,
         @LoggingInterceptor loggingInterceptor: Interceptor?,
+        @ChuckerInterceptor chuckerInterceptor: Interceptor?,
         @HeadersInterceptor headersInterceptor: Interceptor,
         @StatusCodeInterceptor statusCodeInterceptor: Interceptor,
         @TokenAuthenticator tokenAuthenticator: Authenticator,
     ): OkHttpClient = Network.getHttpClient(
-        interceptors = listOfNotNull(loggingInterceptor, headersInterceptor, statusCodeInterceptor),
+        interceptors = listOfNotNull(headersInterceptor, statusCodeInterceptor, loggingInterceptor, chuckerInterceptor),
         authenticator = tokenAuthenticator,
         cache = cache,
     )

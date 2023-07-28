@@ -1,4 +1,4 @@
-package com.yusmp.basecode.presentation.profile
+package com.yusmp.basecode.presentation.profileTab.profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,14 +6,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.badoo.mvicore.modelWatcher
 import com.yusmp.basecode.R
-import com.yusmp.basecode.databinding.FragmentProfileBinding
+import com.yusmp.basecode.databinding.FragmentProfileTabBinding
 import com.yusmp.basecode.presentation.common.BaseFragment
 import com.yusmp.basecode.presentation.common.extentions.isLoading
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileUiState, ProfileEvent>() {
-    override val viewModel: ProfileViewModel by viewModels()
+class ProfileTabFragment : BaseFragment<FragmentProfileTabBinding, ProfileUiState, ProfileEvent>() {
+    override val viewModel: ProfileTabViewModel by viewModels()
 
     override val stateRenderer = modelWatcher {
         ProfileUiState::isLoading { isLoading ->
@@ -24,9 +24,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileUiState, Pro
         }
         ProfileUiState::isUserAuthorized { isUserAuthorized ->
             binding.btnLogin.text = if (isUserAuthorized) {
-                getString(R.string.authorization_logout)
+                getString(R.string.authorization_phone_logout)
             } else {
-                getString(R.string.authorization_login)
+                getString(R.string.authorization_phone_login)
             }
         }
     }
@@ -34,22 +34,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileUiState, Pro
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
-    ): FragmentProfileBinding {
-        return FragmentProfileBinding.inflate(inflater, container, false)
+    ): FragmentProfileTabBinding {
+        return FragmentProfileTabBinding.inflate(inflater, container, false)
     }
 
     override fun ProfileEvent.handleEvent() {
         when (this) {
             is ProfileEvent.NavigateToAuthorization -> {
                 findNavController().navigate(
-                    ProfileFragmentDirections.actionProfileFragmentToAuthorizationNavGraph()
+                    ProfileTabFragmentDirections.actionProfileFragmentToAuthorizationNavGraph()
                 )
             }
         }
     }
 
 
-    override fun FragmentProfileBinding.setupViews() {
+    override fun FragmentProfileTabBinding.setupViews() {
         btnLogin.setOnClickListener {
             viewModel.changeAuthorizationState()
         }

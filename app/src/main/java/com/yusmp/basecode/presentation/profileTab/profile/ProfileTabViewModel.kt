@@ -1,9 +1,9 @@
-package com.yusmp.basecode.presentation.profile
+package com.yusmp.basecode.presentation.profileTab.profile
 
 import androidx.lifecycle.viewModelScope
+import com.yusmp.basecode.presentation.common.BaseViewModel
 import com.yusmp.domain.auth.LogoutUseCase
 import com.yusmp.domain.auth.ObserveSessionUseCase
-import com.yusmp.basecode.presentation.common.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(
+class ProfileTabViewModel @Inject constructor(
     private val observeSessionUseCase: ObserveSessionUseCase,
     private val logoutUseCase: LogoutUseCase,
 ) : BaseViewModel<ProfileUiState, ProfileEvent>(ProfileUiState()) {

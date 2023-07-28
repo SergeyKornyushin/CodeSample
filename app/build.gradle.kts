@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.safe.args)
 }
 apply(from = "../build-tasks.gradle.kts")
+apply(plugin = "org.jetbrains.kotlin.android")
 
 android {
     namespace = libs.versions.applicationId.get()
@@ -88,6 +89,9 @@ dependencies {
 
     // model watcher
     implementation(libs.mvi.core.diff)
+
+    // seismic
+    implementation(libs.seismic)
 }
 
 @Suppress("UNCHECKED_CAST")

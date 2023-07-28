@@ -11,13 +11,15 @@
         <item name="colorOnSecondaryContainer">@color/cherry_100</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
-        <item name="checkboxStyle">@style/SquareCheckBox</item>
+        <item name="android:dialogTheme">@style/AlertDialog</item>
     </style>
 
     <!--    region checkbox-->
     <style name="SquareCheckBox">
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
         <item name="android:button">@null</item>
         <item name="android:background">@drawable/checkbox_square_selector</item>
     </style>
@@ -30,17 +32,30 @@
     </style>
     <!--    endregion-->
 
+    <!--    region TextInputLayout-->
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/box_stroke_color_selector</item>
+        <item name="boxStrokeErrorColor">@color/error_100</item>
+        <item name="android:textColorHint">@color/black_solid_50</item>
+        <item name="hintTextColor">@color/violet_100</item>
+        <item name="hintTextAppearance">@style/Text.System.Placeholder</item>
+        <item name="errorTextColor">@color/error_100</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.None</item>
+    </style>
+    <!--    endregion-->
+
     <!--    region back button-->
     <style name="CloseNavigateCross">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
         <item name="android:src">@drawable/ic_cross</item>
     </style>
 
     <style name="BackNavigateArrow">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
         <item name="android:src">@drawable/ic_arrow_left</item>
     </style>
     <!--    region-->
@@ -56,6 +71,13 @@
         <item name="android:windowBackground">@drawable/dialog_rounded_background</item>
     </style>
     <!--    region-->
+
+    <!--    region alert dialog-->
+    <style name="AlertDialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@drawable/background_alert_dialog</item>
+    </style>
+    <!--    endregion-->
 
     <!--    region shape-->
     <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">

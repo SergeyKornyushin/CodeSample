@@ -3,6 +3,7 @@ package com.yusmp.basecode.presentation.common.extentions
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -12,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
+import com.yusmp.basecode.presentation.MainActivity
 import com.yusmp.basecode.presentation.common.utils.AppSnackBarUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -72,4 +74,20 @@ fun Fragment.getColor(@ColorRes colorId: Int) = ContextCompat.getColor(requireCo
 fun Fragment.openLinkInBrowser(url: String) {
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
     startActivity(intent)
+}
+
+// Should be called from onAttach method
+fun Fragment.handleBackClick(onBackClick: () -> Unit) {
+    requireActivity()
+        .onBackPressedDispatcher
+        .addCallback(
+            /* owner = */ this,
+            /* onBackPressedCallback = */ object : OnBackPressedCallback(/* enabled = */ true) {
+                override fun handleOnBackPressed(): Unit = onBackClick.invoke()
+            }
+        )
+}
+
+fun Fragment.setHomeAsStartDestination() {
+    (requireActivity() as? MainActivity)?.setHomeAsStartDestination()
 }

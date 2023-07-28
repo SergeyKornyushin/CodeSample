@@ -52,4 +52,8 @@ dependencies {
 
     // hilt annotations
     implementation(libs.hilt.javax.inject)
+
+    // chucker
+    debugImplementation(libs.chucker.debug)
+    releaseImplementation(libs.chucker.release)
 }
