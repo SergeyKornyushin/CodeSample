@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
@@ -25,6 +27,8 @@ android {
         val minor = libs.versions.minor.get().toInt()
         val buildNumber = libs.versions.buildNumber.get().toInt()
         versionName = "$major.$minor($buildNumber)"
+
+        archivesName.set("${rootProject.name}-$versionName")
 
         testInstrumentationRunner = libs.versions.testRunner.get()
     }
