@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +31,8 @@
             app:itemActiveIndicatorStyle="@null"
             app:itemTextAppearanceActive="@style/Text.Nano.Regular"
             app:itemTextAppearanceInactive="@style/Text.Nano.Regular"
-            app:labelVisibilityMode="unlabeled"
+            app:itemIconTint="@color/bottom_nav_item_color_selector"
+            app:itemTextColor="@color/bottom_nav_item_color_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
