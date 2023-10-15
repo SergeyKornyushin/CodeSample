@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.yusmp.basecode.presentation.common.models.AppEvent
 import com.yusmp.basecode.presentation.common.models.UiEvent
 import com.yusmp.basecode.presentation.common.models.UiState
+import com.yusmp.basecode.presentation.noInternet.NoInternetFragment
 import com.yusmp.domain.common.model.CommonBackendFailure
 import com.yusmp.domain.common.model.NoInternetFailure
 import com.yusmp.domain.common.model.UnknownFailure
@@ -56,7 +57,7 @@ abstract class BaseViewModel<S : UiState, E : UiEvent>(initialState: S) : ViewMo
     }
 
     /**
-     * Refreshes data in the viewModel after user clicks on update in noInternetFragment.
+     * Refreshes data in the viewModel after user clicks on update in [NoInternetFragment].
      *
      * It is recommended to add your initial data loading logic in refresh function, and call it like this:
      * init {
