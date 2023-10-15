@@ -1,6 +1,9 @@
 package com.yusmp.basecode
 
-import org.junit.Assert.*
+import com.yusmp.basecode.presentation.common.extentions.getFormattedThrowable
+import com.yusmp.domain.common.model.ApiError
+import com.yusmp.domain.common.model.CommonBackendFailure
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
@@ -12,5 +15,25 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    @Test
+    fun test_log_message_format_of_getFormattedThrowable() {
+        val throwable = Throwable("test_log_message_format_of_logToFirebase")
+        println(getFormattedThrowable(customKey = "test_log_message_format_of_logToFirebase", throwable = throwable))
+        println(getFormattedThrowable(customKey = null, throwable = throwable))
+
+        val failure: Throwable = CommonBackendFailure(
+            ApiError(
+                extraMessage = "CommonBackendFailure extraMessage",
+                code = 0,
+                message = "CommonBackendFailure message",
+                violations = emptyList(),
+                key = "CommonBackendFailure key",
+                email = "CommonBackendFailure email"
+            )
+        )
+        println()
+        println(getFormattedThrowable(null, failure))
     }
 }

@@ -54,6 +54,8 @@ mvi-core-diff = "1.4.0"
 chucker = "3.5.2"
 # seismic
 seismic = "1.0.3"
+# firebase
+firebase-bom = "32.3.1"
 
 [plugins]
 # android
@@ -113,3 +115,6 @@ chucker-debug = { group = "com.github.chuckerteam.chucker", name = "library", ve
 chucker-release = { group = "com.github.chuckerteam.chucker", name = "library-no-op", version.ref = "chucker" }
 # seismic
 seismic = { group = "com.squareup", name = "seismic", version.ref = "seismic" }
+# firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }

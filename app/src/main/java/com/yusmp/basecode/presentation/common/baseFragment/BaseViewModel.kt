@@ -1,6 +1,7 @@
 package com.yusmp.basecode.presentation.common.baseFragment
 
 import androidx.lifecycle.ViewModel
+import com.yusmp.basecode.presentation.common.extentions.logToFirebase
 import com.yusmp.basecode.presentation.common.models.AppEvent
 import com.yusmp.basecode.presentation.common.models.UiEvent
 import com.yusmp.basecode.presentation.common.models.UiState
@@ -49,5 +50,6 @@ abstract class BaseViewModel<S : UiState, E : UiEvent>(initialState: S) : ViewMo
             else -> AppEvent.Unknown
         }
         _appWideEvents.update { it + error }
+        throwable.logToFirebase("handleError")
     }
 }

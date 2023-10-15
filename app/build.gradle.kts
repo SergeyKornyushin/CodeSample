@@ -96,6 +96,10 @@ dependencies {
 
     // seismic
     implementation(libs.seismic)
+
+    // firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
 }
 
 // region mini ci-cd helper methods
