@@ -98,25 +98,32 @@ dependencies {
     implementation(libs.seismic)
 }
 
+// region mini ci-cd helper methods
 @Suppress("UNCHECKED_CAST")
 val sendApkToTelegram = extra["sendApkToTelegram"] as (File, String) -> Unit
 
-tasks.register("buildDebugAndSendApkToTelegram") {
-    dependsOn(
-        "incrementBuildNumber",
-        "assembleDebug"
-    ) // TODO: you might need to change "assembleDebug" to match your build variant
+fun buildAndSendApkToTelegram(variantName: String, message: String) {
+    val variant = android.applicationVariants.firstOrNull { it.name == variantName }
+    val apk = variant?.outputs?.firstOrNull()?.outputFile
+    if (apk?.exists() == true) {
+        sendApkToTelegram(apk, message)
+    } else {
+        throw GradleException("APK not found for variant $variantName")
+    }
+}
+// endregion
 
-    val message = (project.findProperty("m") as? String?) ?: ""
+// TODO: you might need to change this to match your build variant, for example: arrayOf("prodDebug", "devDebug")
+val variants = arrayOf("debug", "release")
 
+// Register a single task that depends on all the variants in the array
+tasks.register<DefaultTask>("buildAndSendApkToTelegram") {
+    dependsOn("incrementBuildNumber", variants.map { "assemble$ {it.capitalize()}" })
+    val message = project.findProperty("m") as? String ?: ""
     doLast {
-        // TODO: you might need to change this to match your build variant
-        val variant = android.applicationVariants.firstOrNull { it.name == "debug" }
-        val apk = variant?.outputs?.firstOrNull()?.outputFile
-        if (apk?.exists() == true) {
-            sendApkToTelegram(apk, message)
-        } else {
-            throw GradleException("APK not found")
+        // Loop over the array and call the function for each variant
+        variants.forEach { variant ->
+            buildAndSendApkToTelegram(variant, message)
         }
     }
 }

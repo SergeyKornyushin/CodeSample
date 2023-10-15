@@ -29,8 +29,14 @@ tasks.register("checkForUnpushedChanges") {
         }
     }
 }
-tasks.register("incrementBuildNumber") {
+
+tasks.register("beforeBuildingChecks") {
     dependsOn("checkForUncommittedChanges", "checkForUnpushedChanges")
+    doLast {}
+}
+
+tasks.register("incrementBuildNumber") {
+    dependsOn("beforeBuildingChecks")
 
     doLast {
         // Read the current buildNumber from libs.versions.toml
@@ -44,7 +50,8 @@ tasks.register("incrementBuildNumber") {
         val newBuildNumber = buildNumber + 1
 
         // Replace the buildNumber in libs.versions.toml with the new value
-        val newVersionsText = versionsText.replace(buildNumberRegex, "buildNumber = \"$newBuildNumber\"")
+        val newVersionsText =
+            versionsText.replace(buildNumberRegex, "buildNumber = \"$newBuildNumber\"")
         versionsFile.writeText(newVersionsText)
 
         // Commit and push the changes
@@ -66,7 +73,7 @@ extra["sendApkToTelegram"] = fun(apk: File, message: String) {
     val twoHyphens = "--"
 
     val botToken = "5769836331:AAH0bySPAfmC8PYLsoGE67TcET_FkW6ckaY"
-    val chatId = "-1796402825"
+    val chatId = "-679339881"
 
     val url = URL("https://api.telegram.org/bot$botToken/sendDocument")
 
