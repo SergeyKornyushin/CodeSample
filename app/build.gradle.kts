@@ -123,6 +123,8 @@ val variants = arrayOf("debug")
 // ./gradlew buildAndSendToTelegram
 // -----------macos/linux-----------
 // gradlew buildAndSendToTelegram
+//
+// you can add optional message to the builds by adding -Pm="your message" to the command
 
 tasks.register<DefaultTask>("buildAndSendToTelegram") {
     dependsOn(
