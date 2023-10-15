@@ -10,7 +10,7 @@ testRunner = "androidx.test.runner.AndroidJUnitRunner"
 # versions
 major = "1"
 minor = "0"
-buildNumber = "4"
+buildNumber = "5"
 versionCode = "1"
 # endregion
 # android sdk
