@@ -73,7 +73,7 @@ extra["sendApkToTelegram"] = fun(apk: File, message: String) {
     val twoHyphens = "--"
 
     val botToken = "5769836331:AAH0bySPAfmC8PYLsoGE67TcET_FkW6ckaY"
-    val chatId = "-679339881"
+    val chatId = "-1001796402825" // TODO: change this to project's channel ID
 
     val url = URL("https://api.telegram.org/bot$botToken/sendDocument")
 

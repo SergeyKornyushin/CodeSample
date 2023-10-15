@@ -114,11 +114,17 @@ fun buildAndSendApkToTelegram(variantName: String, message: String) {
 // endregion
 
 // TODO: you might need to change this to match your build variant, for example: arrayOf("prodDebug", "devDebug")
-val variants = arrayOf("debug", "release")
+val variants = arrayOf("debug")
 
+// HOW TO USE:
+// make sure you updated variants array above, and chatId in build-tasks.gradle.kts
+// then type command bellow in android studio's terminal followed by (ctr/command)+enter
+// -----------windows-----------
+// ./gradlew buildAndSendToTelegram
+// -----------macos/linux-----------
+// gradlew buildAndSendToTelegram
 
-// Register a single task that depends on all the variants in the array
-tasks.register<DefaultTask>("buildAndSendApkToTelegram") {
+tasks.register<DefaultTask>("buildAndSendToTelegram") {
     dependsOn(
         "incrementBuildNumber",
         variants.map { variant -> "assemble${variant.replaceFirstChar { it.uppercaseChar() }}" }
