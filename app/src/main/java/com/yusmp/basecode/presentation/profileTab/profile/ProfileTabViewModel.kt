@@ -1,7 +1,7 @@
 package com.yusmp.basecode.presentation.profileTab.profile
 
 import androidx.lifecycle.viewModelScope
-import com.yusmp.basecode.presentation.common.BaseViewModel
+import com.yusmp.basecode.presentation.common.baseFragment.BaseViewModel
 import com.yusmp.domain.auth.LogoutUseCase
 import com.yusmp.domain.auth.ObserveSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

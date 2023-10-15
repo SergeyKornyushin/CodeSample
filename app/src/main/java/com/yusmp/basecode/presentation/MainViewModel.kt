@@ -2,7 +2,7 @@ package com.yusmp.basecode.presentation
 
 import android.content.Context
 import androidx.lifecycle.viewModelScope
-import com.yusmp.basecode.presentation.common.BaseViewModel
+import com.yusmp.basecode.presentation.common.baseFragment.BaseViewModel
 import com.yusmp.domain.dataStore.GetIsFirstLaunchAndSetFalseUseCase
 import com.yusmp.domain.debugging.LaunchChuckerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.badoo.mvicore.modelWatcher
 import com.yusmp.basecode.R
 import com.yusmp.basecode.databinding.FragmentProfileTabBinding
-import com.yusmp.basecode.presentation.common.BaseFragment
+import com.yusmp.basecode.presentation.common.baseFragment.BaseFragment
 import com.yusmp.basecode.presentation.common.extentions.isLoading
 import dagger.hilt.android.AndroidEntryPoint
 

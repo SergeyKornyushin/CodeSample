@@ -16,7 +16,7 @@ import com.badoo.mvicore.modelWatcher
 import com.yusmp.basecode.R
 import com.yusmp.basecode.databinding.FragmentPhoneAuthBinding
 import com.yusmp.basecode.presentation.auth.phone.model.CountryPhoneCode
-import com.yusmp.basecode.presentation.common.BaseFragment
+import com.yusmp.basecode.presentation.common.baseFragment.BaseFragment
 import com.yusmp.basecode.presentation.common.extentions.ClickablePart
 import com.yusmp.basecode.presentation.common.extentions.changeErrorState
 import com.yusmp.basecode.presentation.common.extentions.handleBackClick

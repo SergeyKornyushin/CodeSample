@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.yusmp.basecode.AuthorizationNavGraphArgs
 import com.yusmp.basecode.R
 import com.yusmp.basecode.presentation.auth.phone.model.CountryPhoneCode
-import com.yusmp.basecode.presentation.common.BaseViewModel
+import com.yusmp.basecode.presentation.common.baseFragment.BaseViewModel
 import com.yusmp.domain.auth.LoginParams
 import com.yusmp.domain.auth.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

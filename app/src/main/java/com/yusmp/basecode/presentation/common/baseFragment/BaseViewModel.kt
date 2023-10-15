@@ -1,4 +1,4 @@
-package com.yusmp.basecode.presentation.common
+package com.yusmp.basecode.presentation.common.baseFragment
 
 import androidx.lifecycle.ViewModel
 import com.yusmp.basecode.presentation.common.models.AppEvent

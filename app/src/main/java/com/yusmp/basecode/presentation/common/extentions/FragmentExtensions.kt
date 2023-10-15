@@ -91,3 +91,7 @@ fun Fragment.handleBackClick(onBackClick: () -> Unit) {
 fun Fragment.setHomeAsStartDestination() {
     (requireActivity() as? MainActivity)?.setHomeAsStartDestination()
 }
+
+fun Fragment.setStatusBarColor(@ColorRes colorId: Int) {
+    requireActivity().window.statusBarColor = getColor(colorId)
+}
