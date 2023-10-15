@@ -21,6 +21,8 @@ class ProfileTabViewModel @Inject constructor(
         observeAuthorizationState()
     }
 
+    override fun refresh(isUpdateAll: Boolean) = Unit
+
     private fun observeAuthorizationState() {
         observeSessionUseCase(Unit)
             .onStart { updateUiState { copy(isLoading = true) } }

@@ -30,6 +30,8 @@ class PhoneAuthViewModel @Inject constructor(
 
     private val args = AuthorizationNavGraphArgs.fromSavedStateHandle(savedStateHandle)
 
+    override fun refresh(isUpdateAll: Boolean) = Unit
+
     fun updatePolicyAgreementCheckboxState(isChecked: Boolean) {
         updateUiState { copy(hasUserAcceptedPolicy = isChecked) }
     }

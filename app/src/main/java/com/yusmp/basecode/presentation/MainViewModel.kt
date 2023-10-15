@@ -25,5 +25,7 @@ class MainViewModel @Inject constructor(
         if (isDebugEnvironment) sendUiEvent(MainUiEvent.ObserveDeviceShake)
     }
 
+    override fun refresh(isUpdateAll: Boolean) = Unit
+
     fun launchChuckerActivity() = launchChuckerUseCase()
 }

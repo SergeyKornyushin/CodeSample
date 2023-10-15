@@ -1,7 +1,6 @@
 package com.yusmp.basecode.presentation.common.baseFragment
 
 import androidx.lifecycle.ViewModel
-import com.yusmp.basecode.presentation.common.extentions.logToFirebase
 import com.yusmp.basecode.presentation.common.models.AppEvent
 import com.yusmp.basecode.presentation.common.models.UiEvent
 import com.yusmp.basecode.presentation.common.models.UiState
@@ -50,6 +49,24 @@ abstract class BaseViewModel<S : UiState, E : UiEvent>(initialState: S) : ViewMo
             else -> AppEvent.Unknown
         }
         _appWideEvents.update { it + error }
-        throwable.logToFirebase("handleError")
+        // TODO: uncomment when add firebase json.
+        //   be aware that if firebase crashlytics is not properly configured, this line will throw
+        //   IllegalStateException: Default FirebaseApp is not initialized in this process com.yusmp.basecode. Make sure to call FirebaseApp.initializeApp(Context) first.
+//        throwable.logToFirebase("handleError")
     }
+
+    /**
+     * Refreshes data in the viewModel after user clicks on update in noInternetFragment.
+     *
+     * It is recommended to add your initial data loading logic in refresh function, and call it like this:
+     * init {
+     *   refresh(false/true)
+     * }
+     * This ensures that when this function is called after internet loss, it will request all data again.
+     *
+     * @param isUpdateAll Optional parameter that controls whether to refresh all data
+     * or exclude some data from being refreshed in case being called from viewModel init block.
+     */
+    abstract fun refresh(isUpdateAll: Boolean = true)
+
 }

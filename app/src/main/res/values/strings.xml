@@ -10,6 +10,12 @@
     <string name="general_error_text_no_internet">You have no internet</string>
     <!--   endregion-->
 
+    <!--   region no internet fragment-->
+    <string name="no_internet_headline">Нет интернета</string>
+    <string name="no_internet_instruction">Проверьте подключение к сети и попробуйте снова</string>
+    <string name="no_internet_button">Повторить</string>
+    <!--   endregion-->
+
     <!--   region bottom nav-->
     <string name="bottom_nav_profile">Профиль</string>
     <string name="bottom_nav_catalog">Каталог</string>

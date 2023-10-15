@@ -8,6 +8,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.badoo.mvicore.ModelWatcher
 import com.yusmp.basecode.R
@@ -20,6 +22,7 @@ import com.yusmp.basecode.presentation.common.models.ScreenMode
 import com.yusmp.basecode.presentation.common.models.StatusBarContentAppearanceMode
 import com.yusmp.basecode.presentation.common.models.UiEvent
 import com.yusmp.basecode.presentation.common.models.UiState
+import com.yusmp.basecode.presentation.noInternet.NoInternetFragment
 import kotlinx.coroutines.flow.mapNotNull
 
 abstract class BaseFragment<VB : ViewBinding, S : UiState, E : UiEvent> : Fragment() {
@@ -54,7 +57,7 @@ abstract class BaseFragment<VB : ViewBinding, S : UiState, E : UiEvent> : Fragme
         observeUiState()
         setEdgeToEdgeMode()
         updateStatusBarAppearance()
-
+        setFragmentListeners()
         binding.setupViews()
     }
 
@@ -74,12 +77,11 @@ abstract class BaseFragment<VB : ViewBinding, S : UiState, E : UiEvent> : Fragme
     }
 
     protected fun AppEvent.handleAppWideEvent() {
-        val message = when (this) {
-            is AppEvent.ErrorMessage -> this.message
-            is AppEvent.Unknown -> getString(R.string.general_error_text_unknown)
-            is AppEvent.NoInternet -> getString(R.string.general_error_text_no_internet)
+        when (this) {
+            is AppEvent.ErrorMessage -> showSnackBar(message = this.message)
+            is AppEvent.Unknown -> showSnackBar(message = getString(R.string.general_error_text_unknown))
+            is AppEvent.NoInternet -> findNavController().navigate(R.id.action_global_noInternetFragment)
         }
-        showSnackBar(message = message)
     }
 
     open fun setEdgeToEdgeMode() {
@@ -114,6 +116,14 @@ abstract class BaseFragment<VB : ViewBinding, S : UiState, E : UiEvent> : Fragme
 
     private fun updateStatusBarAppearance() {
         requireActivity().window.setStatusBarContentColor(statusBarMode)
+    }
+
+    private fun setFragmentListeners() {
+        if (this !is NoInternetFragment) {
+            setFragmentResultListener(NoInternetFragment.REQUEST_KEY) { _, _ ->
+                viewModel.refresh()
+            }
+        }
     }
 
     override fun onDestroyView() {

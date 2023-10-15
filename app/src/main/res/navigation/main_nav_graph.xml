@@ -5,6 +5,12 @@
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/profile_tab_fragment">
 
+    <!--region Global Navigation -->
+    <action
+        android:id="@+id/action_global_noInternetFragment"
+        app:destination="@id/no_internet_fragment" />
+    <!--endregion-->
+
     <!--region Bottom Navigation -->
     <fragment
         android:id="@+id/profile_tab_fragment"
@@ -41,5 +47,11 @@
 
     </navigation>
     <!-- endregion   -->
+
+    <fragment
+        android:id="@+id/no_internet_fragment"
+        android:name="com.yusmp.basecode.presentation.noInternet.NoInternetFragment"
+        android:label="fragment_no_internet"
+        tools:layout="@layout/fragment_no_internet" />
 
 </navigation>
