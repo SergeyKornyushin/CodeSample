@@ -116,9 +116,13 @@ fun buildAndSendApkToTelegram(variantName: String, message: String) {
 // TODO: you might need to change this to match your build variant, for example: arrayOf("prodDebug", "devDebug")
 val variants = arrayOf("debug", "release")
 
+
 // Register a single task that depends on all the variants in the array
 tasks.register<DefaultTask>("buildAndSendApkToTelegram") {
-    dependsOn("incrementBuildNumber", variants.map { "assemble$ {it.capitalize()}" })
+    dependsOn(
+        "incrementBuildNumber",
+        variants.map { variant -> "assemble${variant.replaceFirstChar { it.uppercaseChar() }}" }
+    )
     val message = project.findProperty("m") as? String ?: ""
     doLast {
         // Loop over the array and call the function for each variant
