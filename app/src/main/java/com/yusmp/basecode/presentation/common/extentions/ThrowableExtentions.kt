@@ -5,6 +5,7 @@ import com.google.firebase.ktx.Firebase
 
 fun Throwable.logToFirebase(customKey: String? = null) {
     Firebase.crashlytics.log(getFormattedThrowable(customKey = customKey, throwable = this))
+    kotlin.runCatching { }
 }
 
 fun getFormattedThrowable(customKey: String?, throwable: Throwable): String {
@@ -13,4 +14,10 @@ fun getFormattedThrowable(customKey: String?, throwable: Throwable): String {
         |message: ${throwable.message},
         |stackTrace: ${throwable.stackTraceToString()}.
     """.trimIndent()
+}
+
+fun <R> runCatchingLogToFirebase(block: () -> R): Result<R> = runCatching {
+    block()
+}.onFailure {
+    it.logToFirebase()
 }
