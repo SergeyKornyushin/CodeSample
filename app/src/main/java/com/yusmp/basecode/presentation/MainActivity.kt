@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeDeviceShake() {
         val sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        val shakeDetector = ShakeDetector { viewModel.launchChuckerActivity(this) }
+        val shakeDetector = ShakeDetector { viewModel.launchChuckerActivity() }
         shakeDetector.start(sensorManager, SensorManager.SENSOR_DELAY_GAME)
     }
 }

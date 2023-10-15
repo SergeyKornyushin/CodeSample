@@ -1,6 +1,5 @@
 package com.yusmp.basecode.presentation
 
-import android.content.Context
 import androidx.lifecycle.viewModelScope
 import com.yusmp.basecode.presentation.common.baseFragment.BaseViewModel
 import com.yusmp.domain.dataStore.GetIsFirstLaunchAndSetFalseUseCase
@@ -26,5 +25,5 @@ class MainViewModel @Inject constructor(
         if (isDebugEnvironment) sendUiEvent(MainUiEvent.ObserveDeviceShake)
     }
 
-    fun launchChuckerActivity(context: Context) = launchChuckerUseCase(context)
+    fun launchChuckerActivity() = launchChuckerUseCase()
 }
