@@ -1,7 +1,7 @@
 [versions]
 # region app constants
 # sdk and app id
-minSdk = "26"
+minSdk = "28"
 targetSdk = "33"
 compileSdk = "34"
 applicationId = "com.yusmp.basecode"

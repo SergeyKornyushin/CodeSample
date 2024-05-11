@@ -28,12 +28,6 @@ android {
         versionName = "$major.$minor($buildNumber)"
 
         archivesName.set("${rootProject.name}-$versionName")
-
-        testInstrumentationRunner = libs.versions.testRunner.get()
-    }
-
-    buildFeatures {
-        viewBinding = true
     }
 
     compileOptions {
@@ -55,18 +49,10 @@ kapt {
 dependencies {
     implementation(project(path = ":domain"))
     implementation(project(path = ":data"))
-
-    // test libs
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.junit)
+    implementation(project(path = ":presentation"))
 
     // android libs
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.material)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
 
     // serialization
     implementation(libs.kotlin.serilization.json)
@@ -83,15 +69,6 @@ dependencies {
 
     // coroutines
     implementation(libs.coroutines.android)
-
-    // better link movement method
-    implementation(libs.better.link.movement.method)
-
-    //phone number
-    implementation(libs.phone.number)
-
-    // model watcher
-    implementation(libs.mvi.core.diff)
 
     // seismic
     implementation(libs.seismic)
