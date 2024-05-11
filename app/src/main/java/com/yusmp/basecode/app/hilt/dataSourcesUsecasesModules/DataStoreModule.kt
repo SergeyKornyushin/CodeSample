@@ -2,7 +2,6 @@ package com.yusmp.basecode.app.hilt.dataSourcesUsecasesModules;
 
 import android.content.Context
 import com.yusmp.data.local.datastore.DataStoreSourceImpl
-import com.yusmp.domain.auth.*
 import com.yusmp.domain.dataStore.*
 import dagger.Binds
 import dagger.Module
@@ -14,14 +13,6 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 interface DataStoreModule {
-    // region data sources
-    companion object {
-        @Provides
-        fun provideDataStoreSource(
-            @ApplicationContext context: Context
-        ): DataStoreSource = DataStoreSourceImpl(context)
-    }
-    // endregion
 
     // region use cases
     @Binds
@@ -35,5 +26,14 @@ interface DataStoreModule {
 
     @Binds
     fun bindGetIsFirstLaunchAndSetFalseUseCase(impl: GetIsFirstLaunchAndSetFalseUseCaseImpl): GetIsFirstLaunchAndSetFalseUseCase
+    // endregion
+
+    // region data sources
+    companion object {
+        @Provides
+        fun provideDataStoreSource(
+            @ApplicationContext context: Context
+        ): DataStoreSource = DataStoreSourceImpl(context)
+    }
     // endregion
 }

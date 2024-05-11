@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -50,8 +49,8 @@ dependencies {
     // datastore
     implementation(libs.datastore.preferences)
 
-    // hilt annotations
-    implementation(libs.hilt.javax.inject)
+    // inject annotations
+    implementation(libs.javax.inject)
 
     // chucker
     debugImplementation(libs.chucker.debug)

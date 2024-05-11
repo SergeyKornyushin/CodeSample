@@ -10,6 +10,7 @@ import com.yusmp.data.db.auth.SessionEntity
     entities = [
         SessionEntity::class,
     ],
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     public abstract fun sessionDao(): SessionDao

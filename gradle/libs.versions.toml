@@ -3,7 +3,7 @@
 # sdk and app id
 minSdk = "26"
 targetSdk = "33"
-compileSdk = "33"
+compileSdk = "34"
 applicationId = "com.yusmp.basecode"
 # constants
 testRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -14,7 +14,7 @@ buildNumber = "5"
 versionCode = "1"
 # endregion
 # android sdk
-ktx = "1.10.0"
+ktx = "1.13.1"
 appcompat = "1.6.1"
 material = "1.8.0"
 constraintlayout = "2.1.4"
@@ -24,16 +24,17 @@ junit = "4.13.2"
 androidx-test-espresso = "3.5.1"
 androidx-test-junit = "1.1.5"
 # gradle plugins
-gradle-plugin = "8.0.2"
+gradle-plugin = "8.1.4"
 # kotlin
-kotlin = "1.8.0"
+kotlin = "1.9.24"
+kotlinJvm = "1.9.0"
 kotlin-serialization = "1.5.0"
 # coroutines
 coroutines = "1.6.4"
 # ksp
-ksp = "1.8.10-1.0.9"
+ksp = "1.9.24-1.0.20"
 # hilt
-hilt = "2.44"
+hilt = "2.51.1"
 javax-inject = "1"
 # room
 room = "2.5.1"
@@ -62,6 +63,7 @@ firebase-bom = "32.3.1"
 android-application = { id = "com.android.application", version.ref = "gradle-plugin" }
 android-library = { id = "com.android.library", version.ref = "gradle-plugin" }
 # kotlin
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinJvm" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
@@ -92,7 +94,8 @@ coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutin
 # hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
-hilt-javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
+# inject annotation
+javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
 # room
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
