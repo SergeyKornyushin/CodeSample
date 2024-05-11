@@ -18,11 +18,7 @@ import com.yusmp.presentation.common.extentions.observeFlow
 import com.yusmp.presentation.common.extentions.setStatusBarColor
 import com.yusmp.presentation.common.extentions.setStatusBarContentColor
 import com.yusmp.presentation.common.extentions.showSnackBar
-import com.yusmp.presentation.common.models.AppEvent
-import com.yusmp.presentation.common.models.ScreenMode
-import com.yusmp.presentation.common.models.StatusBarContentAppearanceMode
-import com.yusmp.presentation.common.models.UiEvent
-import com.yusmp.presentation.common.models.UiState
+import com.yusmp.presentation.common.models.*
 import com.yusmp.presentation.noInternet.NoInternetFragment
 import kotlinx.coroutines.flow.mapNotNull
 
@@ -103,8 +99,11 @@ abstract class BaseFragment<VB : ViewBinding, S : UiState, E : UiEvent> : Fragme
         }
     }
 
+    protected open fun onInsetsChanged(insets: WindowInsetsCompat) = Unit
+
     open fun setEdgeToEdgeMode() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+            onInsetsChanged(windowInsets)
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             view.apply {
                 when (screenMode) {

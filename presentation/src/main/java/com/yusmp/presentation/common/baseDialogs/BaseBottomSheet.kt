@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -26,6 +27,10 @@ abstract class BaseBottomSheet<VB : ViewBinding> : BottomSheetDialogFragment() {
     ) where T : Parcelable {
         arguments = Bundle().apply { putParcelable("param", param) }
         show(fragmentManager, TAG)
+    }
+
+    protected fun navigateUp() {
+        findNavController().popBackStack()
     }
 
     fun show(fragmentManager: FragmentManager) = show(fragmentManager, TAG)
