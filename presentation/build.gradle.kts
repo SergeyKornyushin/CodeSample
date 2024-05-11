@@ -4,7 +4,6 @@ plugins {
     kotlin("kapt")
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android.gradle.plugin)
-    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.safe.args)
 }
 
@@ -37,9 +36,6 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
-    // serialization
-    implementation(libs.kotlin.serilization.json)
 
     // test libs
     testImplementation(libs.junit)

@@ -24,8 +24,9 @@ android {
 
         val major = libs.versions.major.get().toInt()
         val minor = libs.versions.minor.get().toInt()
+        val subMinor = libs.versions.subMinor.get().toInt()
         val buildNumber = libs.versions.buildNumber.get().toInt()
-        versionName = "$major.$minor($buildNumber)"
+        versionName = "$major.$minor.$subMinor ($buildNumber)"
 
         archivesName.set("${rootProject.name}-$versionName")
     }
@@ -51,9 +52,6 @@ dependencies {
     implementation(project(path = ":data"))
     implementation(project(path = ":presentation"))
 
-    // android libs
-    implementation(libs.androidx.core.ktx)
-
     // serialization
     implementation(libs.kotlin.serilization.json)
 
@@ -66,12 +64,6 @@ dependencies {
 
     // retrofit
     implementation(libs.retrofit)
-
-    // coroutines
-    implementation(libs.coroutines.android)
-
-    // seismic
-    implementation(libs.seismic)
 
     // firebase
     implementation(platform(libs.firebase.bom))
