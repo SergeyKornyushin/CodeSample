@@ -10,15 +10,16 @@ testRunner = "androidx.test.runner.AndroidJUnitRunner"
 # versions
 major = "1"
 minor = "0"
-buildNumber = "5"
+subMinor = "0"
+buildNumber = "1"
 versionCode = "1"
 # endregion
 # android sdk
 ktx = "1.13.1"
 appcompat = "1.6.1"
-material = "1.8.0"
+material = "1.12.0"
 constraintlayout = "2.1.4"
-navigation = "2.5.3"
+navigation = "2.7.7"
 # test
 junit = "4.13.2"
 androidx-test-espresso = "3.5.1"
@@ -30,21 +31,21 @@ kotlin = "1.9.24"
 kotlinJvm = "1.9.0"
 kotlin-serialization = "1.5.0"
 # coroutines
-coroutines = "1.6.4"
+coroutines = "1.7.1"
 # ksp
 ksp = "1.9.24-1.0.20"
 # hilt
 hilt = "2.51.1"
 javax-inject = "1"
 # room
-room = "2.5.1"
+room = "2.6.1"
 # retrofit
 retrofit = "2.9.0"
 retrofit-serialization-converter = "0.8.0"
 # okHttp
 okhttp-logging-interceptor = "4.10.0"
 # datastore
-datastore = "1.0.0"
+datastore = "1.1.1"
 # better-link-movement-method
 better-link-movement-method = "2.2.0"
 #phone-number
@@ -56,7 +57,7 @@ chucker = "3.5.2"
 # seismic
 seismic = "1.0.3"
 # firebase
-firebase-bom = "32.3.1"
+firebase-bom = "33.0.0"
 
 [plugins]
 # android
