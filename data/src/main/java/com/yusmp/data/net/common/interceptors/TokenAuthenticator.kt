@@ -10,8 +10,11 @@ import com.yusmp.domain.auth.UpdateTokensParams
 import com.yusmp.domain.auth.UpdateTokensUseCase
 import com.yusmp.domain.auth.model.SessionType
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import okhttp3.*
@@ -31,39 +34,41 @@ class TokenAuthenticator(
     private val isDebugEnvironment: Boolean,
 ) : Authenticator {
 
-    private val maxFailCount = 3
-
+    private val mutex = Mutex()
+    var refreshTokenJob: Job? = null
     override fun authenticate(route: Route?, response: Response): Request? {
         val session = runBlocking { getCurrentSessionUseCase(Unit) }
-        if (session.type != SessionType.AUTHORIZED_USER) {
+
+        if (session.type != SessionType.AUTHORIZED_USER || session.refreshToken.isBlank()) {
             return null
         }
 
-        if (session.refreshToken.isBlank()) {
-            return null
-        }
-
-        if (response.responseCount >= maxFailCount) {
-            return null // If we've failed maxFailCount, give up.
-        }
-
-        val tokenResponse = refreshToken(RefreshTokenRequest(session.refreshToken))
-        if (tokenResponse != null) {
-            // TODO: improve this
-            appScope.launch {
-                updateTokensUseCase(
-                    UpdateTokensParams(
-                        accessToken = tokenResponse.token.orEmpty(),
-                        refreshToken = session.refreshToken
-                    )
-                )
+        runBlocking {
+            mutex.withLock {
+                if (refreshTokenJob == null || refreshTokenJob?.isCompleted == true) {
+                    refreshTokenJob = appScope.launch {
+                        val tokenResponse = refreshToken(RefreshTokenRequest(session.refreshToken))
+                        tokenResponse?.let {
+                            updateTokensUseCase(
+                                UpdateTokensParams(
+                                    it.token.orEmpty(),
+                                    session.refreshToken
+                                )
+                            )
+                        }
+                    }
+                }
             }
-        } else {
-            return null
+
+            // Wait for the refresh token job to complete
+            refreshTokenJob?.join()
         }
 
+        // Get the updated token
+        val updatedSession = runBlocking { getCurrentSessionUseCase(Unit) }
         return response.request.newBuilder()
-            .header(HEADER_AUTH, tokenResponse.token.orEmpty()).build()
+            .header("Authorization", "Bearer ${updatedSession.accessToken}")
+            .build()
     }
 
     private fun refreshToken(refreshToken: RefreshTokenRequest): AuthDataResponse? {
