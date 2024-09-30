@@ -4,9 +4,14 @@ import android.content.Context
 import androidx.room.Room
 
 public object Database {
-    public fun build(context: Context): AppDatabase = Room.databaseBuilder(
+    public fun build(
+        context: Context,
+        factory: DatabaseSupportFactoryProvider
+    ): AppDatabase = Room.databaseBuilder(
         context,
         AppDatabase::class.java,
         "app_database"
-    ).build()
+    )
+        .openHelperFactory(factory.provideSupportFactory())
+        .build()
 }

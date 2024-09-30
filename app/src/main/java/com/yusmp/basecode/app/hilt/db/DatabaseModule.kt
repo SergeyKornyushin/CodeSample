@@ -3,7 +3,9 @@ package com.yusmp.basecode.app.hilt.db
 import android.content.Context
 import com.yusmp.data.db.common.AppDatabase
 import com.yusmp.data.db.common.Database
+import com.yusmp.data.db.common.DatabaseSupportFactoryProvider
 import com.yusmp.data.db.common.DbTransactionProcessorImpl
+import com.yusmp.data.db.common.DefaultDatabaseSupportFactoryProvider
 import com.yusmp.domain.common.DbTransactionProcessor
 import dagger.Module
 import dagger.Provides
@@ -18,9 +20,18 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(
+    fun provideDatabaseSupportFactoryProvider(
         @ApplicationContext context: Context
-    ): AppDatabase = Database.build(context)
+    ): DatabaseSupportFactoryProvider {
+        return DefaultDatabaseSupportFactoryProvider(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(
+        @ApplicationContext context: Context,
+        factory: DatabaseSupportFactoryProvider
+    ): AppDatabase = Database.build(context = context, factory = factory)
 
     @Provides
     fun provideDbTransactionProcessor(

@@ -39,6 +39,7 @@ hilt = "2.51.1"
 javax-inject = "1"
 # room
 room = "2.6.1"
+sqlcipher = "4.5.0"
 # retrofit
 retrofit = "2.9.0"
 retrofit-serialization-converter = "0.8.0"
@@ -101,6 +102,7 @@ javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inje
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+sql-cipher = { group = "net.zetetic", name = "android-database-sqlcipher", version.ref = "sqlcipher" }
 # retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-serialization-converter" }
