@@ -4,7 +4,7 @@
 minSdk = "28"
 targetSdk = "33"
 compileSdk = "34"
-applicationId = "com.yusmp.basecode"
+applicationId = "com.codesample"
 # constants
 testRunner = "androidx.test.runner.AndroidJUnitRunner"
 # versions
@@ -59,6 +59,7 @@ chucker = "3.5.2"
 seismic = "1.0.3"
 # firebase
 firebase-bom = "33.0.0"
+testng = "6.9.6"
 
 [plugins]
 # android
@@ -124,3 +125,4 @@ seismic = { group = "com.squareup", name = "seismic", version.ref = "seismic" }
 # firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+testng = { group = "org.testng", name = "testng", version.ref = "testng" }

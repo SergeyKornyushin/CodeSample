@@ -13,7 +13,7 @@ dependencyResolutionManagement {
         maven(url = "https://jitpack.io")
     }
 }
-rootProject.name = "BaseCode"
+rootProject.name = "CodeSample"
 include(":app")
 include(":data")
 include(":domain")

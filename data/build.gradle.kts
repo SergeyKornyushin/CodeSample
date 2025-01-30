@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yusmp.data"
+    namespace = "com.codesample.data"
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         testInstrumentationRunner = libs.versions.testRunner.get()

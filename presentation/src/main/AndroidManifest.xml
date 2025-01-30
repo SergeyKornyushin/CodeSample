@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.yusmp.basecode.presentation.MainActivity"
+            android:name="com.codesample.codesample.presentation.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">

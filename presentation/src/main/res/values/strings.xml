@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaseCode</string>
+    <string name="app_name">CodeSample</string>
 
     <!--   region links -->
     <string name="link_policy" translatable="false">https://www.google.com</string>

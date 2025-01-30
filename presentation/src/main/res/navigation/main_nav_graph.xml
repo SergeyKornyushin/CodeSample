@@ -14,7 +14,7 @@
     <!--region Bottom Navigation -->
     <fragment
         android:id="@+id/profile_tab_fragment"
-        android:name="com.yusmp.presentation.profileTab.profile.ProfileTabFragment"
+        android:name="com.codesample.presentation.profileTab.profile.ProfileTabFragment"
         android:label="profile_tab_fragment">
 
         <action
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/catalog_tab_fragment"
-        android:name="com.yusmp.presentation.catalogTab.catalog.CatalogTabFragment"
+        android:name="com.codesample.presentation.catalogTab.catalog.CatalogTabFragment"
         android:label="catalog_tab_fragment"
         tools:layout="@layout/fragment_catalog_tab" />
     <!--endregion-->
@@ -41,7 +41,7 @@
 
         <fragment
             android:id="@+id/authorizationFragment"
-            android:name="com.yusmp.presentation.auth.phone.PhoneAuthFragment"
+            android:name="com.codesample.presentation.auth.phone.PhoneAuthFragment"
             android:label="fragment_authorization"
             tools:layout="@layout/fragment_phone_auth" />
 
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/no_internet_fragment"
-        android:name="com.yusmp.presentation.noInternet.NoInternetFragment"
+        android:name="com.codesample.presentation.noInternet.NoInternetFragment"
         android:label="fragment_no_internet"
         tools:layout="@layout/fragment_no_internet" />
 

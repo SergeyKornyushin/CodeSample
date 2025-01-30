@@ -57,6 +57,7 @@ dependencies {
 
     // hilt
     implementation(libs.hilt.android)
+    testImplementation(libs.testng)
     kapt(libs.hilt.android.compiler)
 
     // room
@@ -68,46 +69,4 @@ dependencies {
     // firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)
-}
-
-// region mini ci-cd helper methods
-@Suppress("UNCHECKED_CAST")
-val sendApkToTelegram = extra["sendApkToTelegram"] as (File, String) -> Unit
-
-fun buildAndSendApkToTelegram(variantName: String, message: String) {
-    val variant = android.applicationVariants.firstOrNull { it.name == variantName }
-    val apk = variant?.outputs?.firstOrNull()?.outputFile
-    if (apk?.exists() == true) {
-        sendApkToTelegram(apk, message)
-    } else {
-        throw GradleException("APK not found for variant $variantName")
-    }
-}
-// endregion
-
-// TODO: you might need to change this to match your build variant, for example: arrayOf("prodDebug", "devDebug")
-val variants = arrayOf("debug")
-
-// HOW TO USE:
-// make sure you updated variants array above, and chatId in build-tasks.gradle.kts
-// then type command bellow in android studio's terminal followed by (ctr/command)+enter
-// -----------windows-----------
-// ./gradlew buildAndSendToTelegram
-// -----------macos/linux-----------
-// gradlew buildAndSendToTelegram
-//
-// you can add optional message to the builds by adding -Pm="your message" to the command
-
-tasks.register<DefaultTask>("buildAndSendToTelegram") {
-    dependsOn(
-        "incrementBuildNumber",
-        variants.map { variant -> "assemble${variant.replaceFirstChar { it.uppercaseChar() }}" }
-    )
-    val message = project.findProperty("m") as? String ?: ""
-    doLast {
-        // Loop over the array and call the function for each variant
-        variants.forEach { variant ->
-            buildAndSendApkToTelegram(variant, message)
-        }
-    }
 }

@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yusmp.presentation"
+    namespace = "com.codesample.presentation"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
