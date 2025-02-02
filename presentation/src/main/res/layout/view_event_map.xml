@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_height="match_parent"
+    tools:layout_width="match_parent">
+
+    <com.otaliastudios.zoom.ZoomLayout
+        android:id="@+id/zoom_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white_100"
+        android:scrollbars="none"
+        app:alignment="center"
+        app:animationDuration="240"
+        app:flingEnabled="true"
+        app:hasClickableChildren="true"
+        app:horizontalPanEnabled="true"
+        app:maxZoom="7"
+        app:maxZoomType="zoom"
+        app:minZoom="1"
+        app:minZoomType="zoom"
+        app:oneFingerScrollEnabled="true"
+        app:overPinchable="false"
+        app:overScrollHorizontal="true"
+        app:overScrollVertical="true"
+        app:scrollEnabled="true"
+        app:threeFingersScrollEnabled="false"
+        app:transformation="none"
+        app:twoFingersScrollEnabled="false"
+        app:verticalPanEnabled="true"
+        app:zoomEnabled="true">
+
+        <!-- Необходим родительская viewGroup для viewGroup в которую мы добавляем view,
+         без этого некорректно работает zoom layout -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <com.codesample.presentation.customViews.mapPlaceSelection.ViewContainer
+                android:id="@+id/view_container"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_event_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY" />
+
+            </com.codesample.presentation.customViews.mapPlaceSelection.ViewContainer>
+
+        </FrameLayout>
+
+    </com.otaliastudios.zoom.ZoomLayout>
+
+</merge>

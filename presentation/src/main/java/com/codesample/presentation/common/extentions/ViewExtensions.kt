@@ -7,13 +7,15 @@ import android.text.Spanned
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.Px
 import androidx.annotation.StringRes
-import androidx.core.view.isVisible
+import androidx.core.view.*
 import androidx.core.widget.ContentLoadingProgressBar
 import com.google.android.material.textfield.TextInputLayout
 import me.saket.bettermovementmethod.BetterLinkMovementMethod
@@ -116,4 +118,15 @@ fun TextView.setClickableParts(
 
 fun EditText.setMaxLength(maxLength: Int) {
     filters += arrayOf(InputFilter.LengthFilter(maxLength))
+}
+
+fun View.updateMargins(
+    @Px left: Int = marginLeft,
+    @Px top: Int = marginTop,
+    @Px right: Int = marginRight,
+    @Px bottom: Int = marginBottom
+) {
+    updateLayoutParams<ViewGroup.MarginLayoutParams> {
+        updateMargins(left, top, right, bottom)
+    }
 }

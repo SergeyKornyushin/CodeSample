@@ -18,3 +18,12 @@ fun <T> List<T>.replace(
         toMutableList().apply { set(index, newItem) }
     }
 }
+
+/**
+ * Возвращает список элементов уникальных для каждого списка
+ */
+fun <T> Collection<T>.symmetricDifference(other: Collection<T>): Set<T> {
+    val left = this subtract other.toSet()
+    val right = other subtract this.toSet()
+    return left union right
+}

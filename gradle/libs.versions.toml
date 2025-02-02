@@ -60,6 +60,8 @@ seismic = "1.0.3"
 # firebase
 firebase-bom = "33.0.0"
 testng = "6.9.6"
+# coil
+coil = "2.4.0"
 
 [plugins]
 # android
@@ -126,3 +128,5 @@ seismic = { group = "com.squareup", name = "seismic", version.ref = "seismic" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 testng = { group = "org.testng", name = "testng", version.ref = "testng" }
+# coil
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }

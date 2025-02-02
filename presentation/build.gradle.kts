@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android.gradle.plugin)
     alias(libs.plugins.safe.args)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -28,6 +29,7 @@ android {
 
 dependencies {
     implementation(project(path = ":domain"))
+    implementation(project(path = ":zoom_layout"))
 
     // android libs
     implementation(libs.androidx.core.ktx)
@@ -57,4 +59,7 @@ dependencies {
 
     // better link movement method
     implementation(libs.better.link.movement.method)
+
+    // coil
+    implementation(libs.coil)
 }
